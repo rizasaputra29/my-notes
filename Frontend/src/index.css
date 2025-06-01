@@ -42,6 +42,261 @@
 
 }
 
+/* Add these animations */
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out-left {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slide-enter {
+  animation: slide-in-right 0.5s forwards;
+}
+
+.slide-exit {
+  animation: slide-out-left 0.5s forwards;
+}
+
+.slide-reverse-enter {
+  animation: slide-in-left 0.5s forwards;
+}
+
+.slide-reverse-exit {
+  animation: slide-out-right 0.5s forwards;
+}
+
+.form-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.form-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+}
+
+.form-wrapper {
+  min-height: 100vh;
+  background-color: #151f32;
+  overflow: hidden;
+}
+
+.form-content {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background-color: #1a2533;
+}
+
+.side-panel {
+  display: none;
+  width: 50%;
+  background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+  position: absolute;
+  height: 100%;
+  transition: transform 0.7s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .side-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+  }
+
+  .side-panel.left {
+    left: 0;
+  }
+
+  .side-panel.right {
+    left: 50%;
+  }
+}
+
+.panel-content {
+  max-width: 28rem;
+  text-align: center;
+  color: white;
+}
+
+.panel-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.panel-description {
+  font-size: 1.125rem;
+  color: #bfdbfe;
+  margin-bottom: 2rem;
+}
+
+.decorative-circle {
+  width: 10rem;
+  height: 10rem;
+  margin: 0 auto;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 9999px;
+  transition: transform 0.5s;
+}
+
+.decorative-circle:hover {
+  transform: scale(1.05);
+}
+
+.form-panel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  transition: transform 0.7s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .form-panel {
+    width: 50%;
+  }
+
+  .form-panel.right {
+    transform: translateX(100%);
+  }
+}
+
+.form-inner {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.form-title {
+  font-size: 1.875rem;
+  font-weight: 300;
+  color: #f3f4f6;
+  margin-bottom: 2.5rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.875rem;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  color: #f3f4f6;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+  margin-top: 2rem;
+}
+
+.submit-button:hover {
+  background-color: #1d4ed8;
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.auth-link {
+  color: #60a5fa;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.auth-link:hover {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
 @media only screen and (max-width: 350px){
   .nav-logo{
     display: none;

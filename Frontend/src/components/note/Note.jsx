@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteBtn from "../delete/DeleteBtn";
+import BackButton from "../BackButton";
 
 const Note = ({ item, index, id }) => {
   const navigate = useNavigate();

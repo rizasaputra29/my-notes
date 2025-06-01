@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { AppContext } from "../../context/AppContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BackButton from "../BackButton";
 
 const CreateNote = () => {
   const navigate = useNavigate();
@@ -63,6 +64,7 @@ const CreateNote = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white flex items-center justify-center">
       <div className="w-full max-w-2xl p-8 bg-gray-800 rounded-lg shadow-lg">
+        <BackButton />
         <h2 className="text-3xl font-bold text-center text-gray-100 mb-6">
           Create a New Note
         </h2>

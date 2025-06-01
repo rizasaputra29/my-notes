@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { AppContext } from "../context/AppContext";
+import BackButton from '../components/BackButton';
 
 const UpdateNotePage = () => {
   const { id } = useParams();
@@ -97,13 +98,20 @@ const UpdateNotePage = () => {
   console.log("file ==>", file);
   console.log("title and desc", title, desc);
   return (
-    <div className="min-h-[calc(100vh-64px)] mt-16 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="container max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
-        <h1 className="text-3xl font-bold text-white mb-6">Update Note</h1>
-
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 pt-24">
+      <div className="container max-w-4xl mx-auto px-4 pb-16">
+        <div className="bg-gray-800/50 backdrop-blur-md rounded-xl p-6 mb-6">
+          <div className="flex items-center gap-6">
+            
+            <h1 className="text-2xl font-bold text-white">Update Note</h1>
+          </div>
+        </div>
+        
         {title ? (
           <div className="bg-gray-800/50 backdrop-blur-md rounded-xl p-6 shadow-lg">
+            <div className="pb-5">
+            <BackButton />
+            </div>
             <form className="space-y-6">
               {/* Title Input */}
               <div className="space-y-2">

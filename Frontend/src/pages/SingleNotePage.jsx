@@ -34,8 +34,12 @@ const SingleNotePage = () => {
 
   console.log("id SingleNotePage ==>", id);
   return (
-    <div className="min-h-[calc(100vh-64px)] mt-16 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="container max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 pt-24">
+      <div className="container max-w-4xl mx-auto px-4 pb-16">
+        <div className="bg-gray-800/50 backdrop-blur-md rounded-xl p-6 mb-6">
+          <h1 className="text-2xl font-bold text-white">View Note</h1>
+        </div>
+
         {note ? (
           <SingleNote note={note} id={id} />
         ) : (

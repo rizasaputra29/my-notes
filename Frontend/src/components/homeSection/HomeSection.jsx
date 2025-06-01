@@ -1,6 +1,7 @@
 import React from "react";
 import { FiCheckCircle } from "react-icons/fi";
 import star from "../../assets/images/stars.svg";
+import { Link } from "react-router-dom";
 
 const HomeSection = () => {
   return (
@@ -15,12 +16,11 @@ const HomeSection = () => {
           intuitive notes app. Stay organized, stay productive.
         </p>
         <div className="mt-8 flex gap-4">
+          <Link to="/notes">
           <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg text-lg font-semibold transition duration-300">
             Get Started
           </button>
-          <button className="px-8 py-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full shadow-lg text-lg font-semibold transition duration-300">
-            Learn More
-          </button>
+          </Link>
         </div>
 
         {/* Floating Decorative Elements */}
@@ -99,7 +99,7 @@ const HomeSection = () => {
               simple, fast, and reliable!"
             </p>
             <h4 className="mt-4 text-lg font-semibold text-gray-100">
-              - John Doe
+              - Fuad Vario
             </h4>
           </div>
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -108,7 +108,7 @@ const HomeSection = () => {
               anytime!"
             </p>
             <h4 className="mt-4 text-lg font-semibold text-gray-100">
-              - Jane Smith
+              - Rusdi Barber
             </h4>
           </div>
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -116,7 +116,7 @@ const HomeSection = () => {
               "The best notes app I've ever used. Highly recommended!"
             </p>
             <h4 className="mt-4 text-lg font-semibold text-gray-100">
-              - Alex Johnson
+              - Amba Terompet
             </h4>
           </div>
         </div>
@@ -132,9 +132,11 @@ const HomeSection = () => {
             Join thousands of users who are already organizing their lives with
             our notes app. It's free to start!
           </p>
+          <Link to="/page/:pagename">
           <button className="mt-8 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg text-lg font-semibold transition duration-300">
             Sign Up for Free
           </button>
+          </Link>
         </div>
       </section>
     </div>

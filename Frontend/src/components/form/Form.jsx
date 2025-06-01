@@ -1,25 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { FaLock } from "react-icons/fa";
 import axios from "axios";
 import { AppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { CSSTransition } from 'react-transition-group';
 
 const Form = ({ name }) => {
-  const { token, setToken, user, setUser } = useContext(AppContext);
-
+  const { setToken, setUser } = useContext(AppContext);
   const navigate = useNavigate();
-
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [isReverse, setIsReverse] = useState(false);
+  const [formData, setFormData] = useState({ name: "", pass: "" });
+  const isLogin = name === "LOGIN";
 
-  const [formData, setFormData] = useState({
-    name: "",
-    pass: "",
-  });
+  useEffect(() => {
+    setIsReverse(isLogin);
+  }, [name]);
 
   const changeHandler = (event) => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
@@ -61,59 +62,90 @@ const Form = ({ name }) => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="w-full max-w-md p-8 bg-gray-800 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-gray-100 mb-6">
-          {name} Form
-        </h2>
-        <form
-          onSubmit={name === "LOGIN" ? submitHandlerLogin : submitHandlerSignup}
-          className="space-y-6"
-        >
-          {/* Username Input */}
-          <div className="relative">
-            <BiSolidUserCircle className="absolute text-2xl text-gray-400 left-3 top-3" />
-            <input
-              type="text"
-              name="name"
-              placeholder="Username"
-              onChange={changeHandler}
-              className="w-full px-10 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-            />
-          </div>
+    <div className="form-wrapper">
+      <CSSTransition
+        in={true}
+        appear={true}
+        timeout={500}
+        classNames={isReverse ? "slide-reverse" : "slide"}
+      >
+        <div className="form-content">
+          <div className="auth-container">
+            {/* Animated Side Panel */}
+            <div className={`side-panel ${isLogin ? 'left' : 'right'}`}>
+              <div className="panel-content">
+                <h1 className="panel-title">
+                  {isLogin ? "Welcome Back" : "Join Us"}
+                </h1>
+                <p className="panel-description">
+                  {isLogin 
+                    ? "Sign in to continue your journey with us" 
+                    : "Join our community and start your journey today"
+                  }
+                </p>
+                <div className="decorative-circle"></div>
+              </div>
+            </div>
 
-          {/* Password Input */}
-          <div className="relative">
-            <FaLock className="absolute text-2xl text-gray-400 left-3 top-3" />
-            <input
-              type="password"
-              name="pass"
-              placeholder="Password"
-              onChange={changeHandler}
-              className="w-full px-10 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-            />
-          </div>
+            {/* Form Panel */}
+            <div className={`form-panel ${isLogin ? 'right' : 'left'}`}>
+              <div className="form-inner">
+                <h2 className="form-title">
+                  {isLogin ? "Sign In" : "Create Account"}
+                </h2>
+                
+                <form onSubmit={isLogin ? submitHandlerLogin : submitHandlerSignup}>
+                  <div className="input-group">
+                    <label htmlFor="name">Username</label>
+                    <div className="input-wrapper">
+                      <BiSolidUserCircle className="input-icon" />
+                      <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        placeholder="Enter your username"
+                        onChange={changeHandler}
+                        className="auth-input"
+                      />
+                    </div>
+                  </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300"
-          >
-            {name === "LOGIN" ? "Login Now" : "Sign Up Now"}
-          </button>
-        </form>
-        <p className="mt-6 text-center text-gray-400">
-          {name === "LOGIN" ? "Don't have an account?" : "Already have an account?"}{" "}
-          <span
-            onClick={() =>
-              navigate(name === "LOGIN" ? "/page/signup" : "/page/login")
-            }
-            className="text-blue-500 hover:underline cursor-pointer"
-          >
-            {name === "LOGIN" ? "Sign Up" : "Login"}
-          </span>
-        </p>
-      </div>
+                  <div className="input-group">
+                    <label htmlFor="pass">Password</label>
+                    <div className="input-wrapper">
+                      <FaLock className="input-icon" />
+                      <input
+                        id="pass"
+                        type="password"
+                        name="pass"
+                        placeholder="Enter your password"
+                        onChange={changeHandler}
+                        className="auth-input"
+                      />
+                    </div>
+                  </div>
+
+                  <button type="submit" className="submit-button">
+                    {isLogin ? "Sign In" : "Create Account"}
+                  </button>
+                </form>
+                
+                <div className="auth-footer">
+                  <p>
+                    {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+                    <span
+                      onClick={() => navigate(isLogin ? "/page/signup" : "/page/login")}
+                      className="auth-link"
+                    >
+                      {isLogin ? "Sign Up" : "Sign In"}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </CSSTransition>
     </div>
   );
 };

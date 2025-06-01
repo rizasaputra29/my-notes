@@ -33,10 +33,10 @@ const Navbar = () => {
   }
 
   return (
-    <div className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white flex items-center justify-between px-6 py-6 shadow-lg fixed top-0 z-50">
+    <div className="w-full bg-gray-900 text-white flex items-center justify-between px-6 py-4 shadow-md fixed top-0 z-50 border-b border-gray-800">
       {/* Sidebar Toggle */}
       <div
-        className="text-3xl cursor-pointer hover:text-gray-400 transition duration-300"
+        className="text-2xl cursor-pointer hover:text-blue-400 transition duration-300"
         onClick={() => setIsSidebarOpen(true)}
       >
         <FiMenu />
@@ -44,7 +44,7 @@ const Navbar = () => {
 
       {/* Logo */}
       <div
-        className="text-2xl md:text-3xl font-bold cursor-pointer text-center flex-1 hover:text-gray-400 transition duration-300"
+        className="text-2xl font-bold cursor-pointer text-center flex-1 hover:text-blue-400 transition duration-300"
         onClick={() => navigate("/")}
       >
         MyNotes
@@ -53,17 +53,19 @@ const Navbar = () => {
       {/* User Icon with Dropdown */}
       <div className="relative">
         <div
-          className="text-2xl cursor-pointer flex items-center gap-2 hover:text-gray-400 transition duration-300"
+          className="text-lg cursor-pointer flex items-center gap-2 hover:text-blue-400 transition duration-300"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <FiUser />
-          {token && <span className="hidden md:block">{username}</span>}
+          <div className="flex items-center gap-2 py-1 px-3 rounded-full border border-gray-700 bg-gray-800 hover:border-blue-500 transition-all duration-300">
+            <FiUser />
+            {token && <span className="hidden md:block">{username}</span>}
+          </div>
         </div>
         {isDropdownOpen && (
-          <div className="absolute right-0 mt-2 bg-gray-800 text-white rounded-md shadow-lg py-2 w-40">
+          <div className="absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg py-1 w-40 border border-gray-700 overflow-hidden">
             {token ? (
               <p
-                className="px-4 py-2 hover:bg-gray-700 cursor-pointer transition duration-300"
+                className="px-4 py-2 hover:bg-gray-700 cursor-pointer transition duration-300 text-sm"
                 onClick={logoutHandler}
               >
                 Logout
@@ -71,7 +73,7 @@ const Navbar = () => {
             ) : (
               <>
                 <p
-                  className="px-4 py-2 hover:bg-gray-700 cursor-pointer transition duration-300"
+                  className="px-4 py-2 hover:bg-gray-700 cursor-pointer transition duration-300 text-sm"
                   onClick={() => {
                     navigate("/page/login");
                     setIsDropdownOpen(false);
@@ -80,7 +82,7 @@ const Navbar = () => {
                   Login
                 </p>
                 <p
-                  className="px-4 py-2 hover:bg-gray-700 cursor-pointer transition duration-300"
+                  className="px-4 py-2 hover:bg-gray-700 cursor-pointer transition duration-300 text-sm"
                   onClick={() => {
                     navigate("/page/signup");
                     setIsDropdownOpen(false);
@@ -97,39 +99,55 @@ const Navbar = () => {
       {/* Sidebar */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm"
           onClick={closeSidebar}
         >
           <div
-            className="fixed top-0 left-0 w-64 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white h-full shadow-xl z-50 transform transition-transform duration-300"
+            className="fixed top-0 left-0 w-64 bg-gray-900 text-white h-full shadow-xl z-50 transform transition-transform duration-300"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the sidebar
           >
-            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
-              <h2 className="text-lg font-bold">Menu</h2>
+            <div className="flex items-center justify-between px-6 py-5 border-b border-gray-800">
+              <h2 className="text-lg font-light">Menu</h2>
               <AiOutlineClose
-                className="text-xl cursor-pointer hover:text-gray-400 transition duration-300"
+                className="text-xl cursor-pointer hover:text-blue-400 transition duration-300"
                 onClick={closeSidebar}
               />
             </div>
-            <div className="flex flex-col gap-4 p-4">
-              <p
-                className="cursor-pointer hover:text-gray-400 transition duration-300"
+            <div className="flex flex-col p-6 space-y-6">
+              <div 
+                className="cursor-pointer hover:text-blue-400 transition duration-300 flex items-center gap-3"
                 onClick={() => {
                   navigate("/");
                   closeSidebar();
                 }}
               >
-                Home
-              </p>
-              <p
-                className="cursor-pointer hover:text-gray-400 transition duration-300"
+                <div className="w-1 h-1 rounded-full bg-blue-500"></div>
+                <span>Home</span>
+              </div>
+              <div
+                className="cursor-pointer hover:text-blue-400 transition duration-300 flex items-center gap-3"
                 onClick={() => {
                   navigate("/notes");
                   closeSidebar();
                 }}
               >
-                Notes
-              </p>
+                <div className="w-1 h-1 rounded-full bg-blue-500"></div>
+                <span>Notes</span>
+              </div>
+              {token && (
+                <div className="mt-8 pt-6 border-t border-gray-800">
+                  <div className="flex items-center gap-3 text-gray-400">
+                    <FiUser />
+                    <span>{username}</span>
+                  </div>
+                  <button 
+                    onClick={logoutHandler}
+                    className="mt-4 w-full py-2 border border-gray-700 rounded-lg text-sm hover:bg-gray-800 transition duration-300"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

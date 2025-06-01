@@ -3,27 +3,19 @@ import { useParams } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
 
-const RegistrationPage = () =>{
+const RegistrationPage = () => {
+  const { pagename } = useParams();
+  const [livePageName, setLivePageName] = useState(pagename);
 
-    const {pagename} = useParams();
-    console.log("pagename=>", pagename);
+  useEffect(() => {
+    setLivePageName(pagename);
+  }, [pagename]);
 
-    const [livePageName, setLivePageName] = useState(pagename);
+  return (
+    <div className="w-screen h-screen overflow-hidden">
+      {livePageName === "login" ? <LoginPage /> : <SignupPage />}
+    </div>
+  );
+};
 
-    useEffect(()=>{
-        setLivePageName(pagename);
-    }, [pagename]);
-
-    console.log("livePageName =>", livePageName);
-
-    return(
-        <div className="overflow-x-hidden ">
-            {
-                (livePageName === "login" ) ? (<LoginPage />) : (<SignupPage/>) 
-            }
-        </div>
-    )
-
-}
-
-export default RegistrationPage ;
+export default RegistrationPage;

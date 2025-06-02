@@ -6,7 +6,7 @@ import SingleNote from "../components/singleNote/SingleNote";
 const SingleNotePage = () => {
   const { id } = useParams();
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = "https://my-notes-wine.vercel.app/";
 
   const [note, setNote] = useState(null);
 

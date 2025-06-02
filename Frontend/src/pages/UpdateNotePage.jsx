@@ -8,7 +8,7 @@ import BackButton from '../components/BackButton';
 
 const UpdateNotePage = () => {
   const { id } = useParams();
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = "https://my-notes-wine.vercel.app/";
 
   const { token } = useContext(AppContext);
   const navigate = useNavigate();

@@ -10,7 +10,7 @@ import { CSSTransition } from 'react-transition-group';
 const Form = ({ name }) => {
   const { setToken, setUser } = useContext(AppContext);
   const navigate = useNavigate();
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = "https://my-notes-wine.vercel.app/";
   const [isReverse, setIsReverse] = useState(false);
   const [formData, setFormData] = useState({ name: "", pass: "" });
   const isLogin = name === "LOGIN";

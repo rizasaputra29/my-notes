@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const DeleteBtn = ({id}) => {
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL ;
+    const backendUrl = "https://my-notes-wine.vercel.app/" ;
 
     const {getNotes} = useContext(AppContext);
 

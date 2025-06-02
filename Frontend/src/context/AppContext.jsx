@@ -10,7 +10,7 @@ export function AppContextProvider ( {children} ){
     const [deleted, setDeleted] = useState(false);
     const [allNotes, setAllNotes] = useState(null);
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL ;
+    const backendUrl = "https://my-notes-wine.vercel.app/" ;
 
     function getTokenFromCookie(){
         // Function to get a specific cookie value by name

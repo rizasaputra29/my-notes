@@ -8,7 +8,7 @@ import BackButton from "../BackButton";
 
 const CreateNote = () => {
   const navigate = useNavigate();
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = "https://my-notes-wine.vercel.app/";
   const { token } = useContext(AppContext);
 
   const [title, setTitle] = useState("");
